@@ -18,13 +18,19 @@ class LocationsController < ApplicationController
 
   # POST /locations
   def create
-    @location = Location.new(location_params)
 
-    if @location.save
-      render json: @location, status: :created, location: @location
-    else
-      render json: @location.errors, status: :unprocessable_entity
-    end
+    @loc = location_params
+    @main_hash = {user_id: params[:user_id] , latitude: @loc[:latitude] , longitude: @loc[:longitude]}
+    # @location = Location.new(@main_hash)
+
+    # if @location.save
+    #   render json: @location, status: :created, location: @location
+    # else
+    #   render json: @location.errors, status: :unprocessable_entity
+    # end
+    @result = Location.create(@main_hash)
+
+    render json: @result
   end
 
   # PATCH/PUT /locations/1
