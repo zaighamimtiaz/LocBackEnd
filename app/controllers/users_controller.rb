@@ -3,25 +3,25 @@ class UsersController < ApplicationController
 
   # GET /locations
   def index
-
     @locations = User.all
-
     render json: @locations
   end
 
   # GET /locations/1
   def show
-
     render json: @user
-
   end
 
   # POST /locations
   def create
-
     @result = User.create(user_params)
 
-    render json: @result
+    if @result.errors[:emailid].count > 0
+    	render json: { msg: "Email has been taken" }
+    else
+    	render json: @result
+    end
+
   end
 
   # DELETE /locations/1
@@ -31,22 +31,14 @@ class UsersController < ApplicationController
 
   # POST /locations
   def login
-
-
   	@userTest = User.where(emailid: params[:emailid] , password: params[:password])
 
   	if @userTest.count > 0
   		render json: { msg: @userTest[0] }
-
   	else
   		render json: { msg: 'Authentication failed' }
-  		
   	end
-    
-
-    
   end
-
 
 
   private

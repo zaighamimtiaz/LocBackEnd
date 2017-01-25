@@ -23,7 +23,7 @@ class LocationsController < ApplicationController
     @main_hash = {user_id: params[:user_id] , latitude: @loc[:latitude] , longitude: @loc[:longitude]}
 
     @result = Location.create(@main_hash)
-
+    
     render json: @result
   end
 
