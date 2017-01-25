@@ -3,13 +3,15 @@ class LocationsController < ApplicationController
 
   # GET /locations
   def index
-    @locations = Location.all
+
+    @locations = Location.where(user_id: params[:user_id])
 
     render json: @locations
   end
 
   # GET /locations/1
   def show
+
     render json: @location
   end
 
