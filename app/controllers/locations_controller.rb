@@ -1,5 +1,5 @@
 class LocationsController < ApplicationController
-  before_action :set_location, only: [:show, :update, :destroy]
+  before_action :set_location, only: [:show]
 
   # GET /locations
   def index
@@ -21,30 +21,15 @@ class LocationsController < ApplicationController
 
     @loc = location_params
     @main_hash = {user_id: params[:user_id] , latitude: @loc[:latitude] , longitude: @loc[:longitude]}
-    # @location = Location.new(@main_hash)
 
-    # if @location.save
-    #   render json: @location, status: :created, location: @location
-    # else
-    #   render json: @location.errors, status: :unprocessable_entity
-    # end
     @result = Location.create(@main_hash)
 
     render json: @result
   end
 
-  # PATCH/PUT /locations/1
-  def update
-    if @location.update(location_params)
-      render json: @location
-    else
-      render json: @location.errors, status: :unprocessable_entity
-    end
-  end
-
   # DELETE /locations/1
   def destroy
-    @location.destroy
+    Location.destroy(params[:id])
   end
 
   private
