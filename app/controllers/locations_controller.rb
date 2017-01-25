@@ -13,6 +13,7 @@ class LocationsController < ApplicationController
   def show
 
     render json: @location
+
   end
 
   # POST /locations
@@ -43,7 +44,7 @@ class LocationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_location
-      @location = Location.find(params[:id])
+      @location = Location.where(user_id: params[:user_id] , id: params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
