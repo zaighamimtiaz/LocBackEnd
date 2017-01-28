@@ -34,7 +34,7 @@ class UsersController < ApplicationController
   	@userTest = User.where(emailid: params[:emailid] , password: params[:password])
 
   	if @userTest.count > 0
-  		render json: { msg: @userTest[0] }
+  		render json: @userTest[0]
   	else
   		render json: { msg: 'Authentication failed' }
   	end
