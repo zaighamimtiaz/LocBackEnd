@@ -40,8 +40,19 @@ class UsersController < ApplicationController
   	end
   end
 
+
+
   def sendNotif
-    render json: { msg: 'hawwwwwww' }
+    fcm = FCM.new("AAAA4HIQZe8:APA91bHNAZHr864xlgYJxkrN5es_yo2NbjMj96I9koFwk_P7hk7RcOfyXOeww1_ERjO_hP345K1MzEUwxuMq278201-GfKTZ6z7MI-fPWOc4tZSPNQ8VqXU2a9CJAeCycVNsx3ytJ7C2")
+    # registration_ids= ["doZsmvz9xyM:APA91bGtFidRqOPZN7AwiiOhwILnIdXvMLo2lsaP3h57__14szyLMlTUoAX7Dq_8hyLJqBPEOy_aUspidhfUyuOEBa6Ixxee0mWoGecUCH6am94ncfu6lGaBhVXEtdxD3LevIho4QDcp"] # an array of one or more client registration tokens
+    # options = {notification: {body: "great match!"}}
+
+    @msg1 = params[:message]
+
+    # options = {data: {score: "123"}, collapse_key: "updated_score"}
+    response = fcm.send_to_topic("news", data: {message: @msg1})
+
+    render json: response
     
   end
 
