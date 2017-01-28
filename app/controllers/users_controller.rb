@@ -40,6 +40,11 @@ class UsersController < ApplicationController
   	end
   end
 
+  def sendNotif
+    render json: { msg: 'hawwwwwww' }
+    
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
