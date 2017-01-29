@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 	delete '/users/:user_id/locations/deleteAll', to: 'locations#deleteAll'
+	get '/users/signedInUsers', to: 'users#signedInUsers'
  
   resources :users do
 
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
 
   post '/users/login', to: 'users#login'
   post '/users/sendNotif', to: 'users#sendNotif'
+
 
 
 

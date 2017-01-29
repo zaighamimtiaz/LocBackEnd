@@ -56,6 +56,13 @@ class UsersController < ApplicationController
     
   end
 
+  def signedInUsers
+
+    @lo = Location.pluck('DISTINCT user_id')
+    @uTest = User.where(id: @lo)
+    render json: @uTest
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
