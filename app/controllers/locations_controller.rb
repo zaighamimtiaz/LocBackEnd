@@ -35,7 +35,7 @@ class LocationsController < ApplicationController
   def deleteAll
     @user_id = params[:user_id]
     Location.destroy_all(user_id: @user_id)
-    render json: @user_id
+    render json: { id: @user_id}
   end
 
   private
