@@ -32,6 +32,12 @@ class LocationsController < ApplicationController
     Location.destroy(params[:id])
   end
 
+  def deleteAll
+    @user_id = params[:user_id]
+    Location.destroy_all(user_id: @user_id)
+    render json: @user_id
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_location
